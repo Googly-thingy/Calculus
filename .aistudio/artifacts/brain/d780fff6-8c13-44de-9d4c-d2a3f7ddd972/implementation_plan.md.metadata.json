@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan to rebuild the Dimensional Analysis section into a dedicated calculator interface with interactive quantity/unit buttons, multi-line step-by-step physics formula derivations (e.g. a = v/t -> (L*T^-1)/T = L*T^-2), and categorized pages (Mechanics, Electricity, Heat, Waves, Base).",
+  "updatedAt":  "2026-09-26T02:48:06.970466176Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

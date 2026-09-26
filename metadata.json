@@ -1,0 +1,6 @@
+{
+  "name": "Dimensio",
+  "description": "Scientific calculator and physical dimensional analysis converter supporting standard SI dimensions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

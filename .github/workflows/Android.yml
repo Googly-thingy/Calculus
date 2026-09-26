@@ -1,0 +1,45 @@
+name: Android Build Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    name: Generate Gradle Wrapper and Compile APK
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the source code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Java Environment (Note: Gradle 9.x requires JDK 17 or higher)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Step 3: Explicitly generate/setup Gradle 9.3.1 wrapper
+      - name: Setup Gradle 9.3.1 Wrapper
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.3.1'
+
+      # Step 4: Ensure the local wrapper script has execution permissions
+      - name: Make Gradle Executable
+        run: chmod +x gradlew
+
+      # Step 5: Compile the APK using the newly established gradle wrapper
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      # Step 6: Upload the compiled APK as a GitHub Action artifact
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
